@@ -1,6 +1,6 @@
 import Event from "../models/Event";
 
-export const eventTypes = {
+const eventTypes = {
   motion: [
     new Event(1, "Move Horizontally", 10),
     new Event(2, "Move Vertically", 10),
@@ -17,3 +17,5 @@ export const eventTypes = {
     new Event(13, "Hide Model")
   ]
 };
+
+export default eventTypes;
