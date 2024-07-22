@@ -1,6 +1,6 @@
 import React from "react";
 import { Droppable } from "@hello-pangea/dnd";
-import { eventTypes } from "../constants/eventTypes";
+import eventTypes from "../constants/EventTypes";
 import { componentEventHandlers } from "../utils/eventHandlers";
 import ComponentButton from "./ComponentButton";
 import RunButton from "./RunButton";

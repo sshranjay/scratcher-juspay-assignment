@@ -5,7 +5,7 @@ import PreviewArea from "./components/PreviewArea";
 import { DragDropContext } from "@hello-pangea/dnd";
 import { connect } from "react-redux";
 import { setTasks } from './redux/taskReducer';
-import { eventTypes } from "./constants/eventTypes";
+import eventTypes  from "./constants/EventTypes";
 
 const App = ({ tasks, setTasks }) => {
 
@@ -24,6 +24,7 @@ const App = ({ tasks, setTasks }) => {
     if (source.droppableId.startsWith('sideArea') && destination.droppableId === 'midArea') {
 
       Object.keys(eventTypes).forEach(category => {
+        // eslint-disable-next-line
         const foundTask = eventTypes[category].find(event => event.type == draggableIdType);
         if (foundTask) {
           task = { ...foundTask, id: new Date().getTime() };
@@ -31,14 +32,19 @@ const App = ({ tasks, setTasks }) => {
       });
       // when we add a new task
       newTasks.push(task);
+      // eslint-disable-next-line
     } else if (source.droppableId === 'midArea' && destination.droppableId.startsWith('sideArea')) {
       // when we remove a task
+      // eslint-disable-next-line
       newTasks = newTasks.filter(t => t.id != draggableIdType);
+      // eslint-disable-next-line
     }else if (source.droppableId === 'midArea' && destination.droppableId === 'midArea') {
       // When reordering within 'midArea'
       
        // Find the index of the item being moved
+       // eslint-disable-next-line
       const sourceIndex = newTasks.findIndex((x) => x.id == source.index);
+      // eslint-disable-next-line
       const destinationIndex = newTasks.findIndex((x) => x.id == destination.index);;
 
       // Remove the item from its original position
