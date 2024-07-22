@@ -1,4 +1,4 @@
-# Scratch starter project
+# Scratcher
 
 To get started:
 
