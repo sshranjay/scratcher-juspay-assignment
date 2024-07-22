@@ -1,55 +1,68 @@
 import store from "../store";
-import { move, rotate, showMessage, hideMessage, changeSize, setVisible } from '../redux/catReducer';
+import { move, rotateBy, showMessage, hideMessage, changeSize, setVisible } from '../redux/catReducer';
 
-const handleMove = () => {
-  store.dispatch(move({ x: 10, y: 0 }));
+// Move horizontally
+const handleMoveX = ({ x }) => {
+  store.dispatch(move({ x: parseFloat(x), y: 0 }));
 };
 
-const handleMoveY = () => {
-  store.dispatch(move({ x: 0, y: 10 }));
+// Move vertically
+const handleMoveY = ({ y }) => {
+  store.dispatch(move({ x: 0, y: parseFloat(y) }));
 };
 
-const handleTurnClockwise = () => {
-  store.dispatch(rotate(45));
+// Move diagonally
+const handleMoveDiagonal = ({ x, y }) => {
+  store.dispatch(move({ x: parseFloat(x), y: parseFloat(y) }));
 };
 
-const handleTurnAntiClockwise = () => {
-  store.dispatch(rotate(-45));
+// Turn clockwise
+const handleTurnClockwise = ({ rotate }) => {
+  store.dispatch(rotateBy(parseFloat(rotate)));
 };
 
-const handleSayMessage = () => {
-  store.dispatch(showMessage("Hello!"));
+// Turn anti-clockwise
+const handleTurnAntiClockwise = ({ rotate }) => {
+  store.dispatch(rotateBy(-parseFloat(rotate)));
 };
 
+// Say message
+const handleSayMessage = ({ message }) => {
+  store.dispatch(showMessage(message));
+};
+
+// Hide message
 const handleHideMessage = () => {
   store.dispatch(hideMessage());
 };
 
-const handleChangeSize = () => {
-  store.dispatch(changeSize(120));
+// Update model size
+const handleChangeSize = ({ size }) => {
+  store.dispatch(changeSize(parseFloat(size)));
 };
 
+// Show model
 const handleShow = () => {
   store.dispatch(setVisible(true));
 };
 
+// Hide model
 const handleHide = () => {
   store.dispatch(setVisible(false));
 };
 
 export const componentEventHandlers = {
-    // Motion Events
-    "Move Horizontally": handleMove,        // Maps to Move Horizontally
-    "Move Vertically": handleMoveY,         // Maps to Move Vertically
-    "Turn Clockwise": handleTurnClockwise,  // Maps to Turn Clockwise
-    "Turn Anti Clockwise": handleTurnAntiClockwise, // Maps to Turn Anti Clockwise
-    "Move Diagonally": handleMove,          // If needed for diagonal move
-  
-    // Looks Events
-    "Say Message": handleSayMessage,        // Maps to Say Message
-    "Think": handleSayMessage,              // Assuming Think uses similar handler
-    "Hide Message": handleHideMessage,      // Maps to Hide Message
-    "Update Model Size": handleChangeSize,  // Maps to Update Model Size
-    "Show Model": handleShow,               // Maps to Show Model
-    "Hide Model": handleHide                // Maps to Hide Model
-  };
+  // Motion Events
+  "Move Horizontally": handleMoveX,
+  "Move Vertically": handleMoveY,
+  "Turn Clockwise": handleTurnClockwise,
+  "Turn Anti Clockwise": handleTurnAntiClockwise,
+  "Move Diagonally": handleMoveDiagonal,
+
+  // Looks Events
+  "Say Message": handleSayMessage,
+  "Hide Message": handleHideMessage,
+  "Update Model Size": handleChangeSize,
+  "Show Model": handleShow,
+  "Hide Model": handleHide,
+};

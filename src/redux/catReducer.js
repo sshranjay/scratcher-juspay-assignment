@@ -17,7 +17,7 @@ const catSlice = createSlice({
       state.x += action.payload.x;
       state.y += action.payload.y;
     },
-    rotate(state, action) {
+    rotateBy(state, action) {
       state.rotation += action.payload;
     },
     showMessage(state, action) {
@@ -35,5 +35,5 @@ const catSlice = createSlice({
   },
 });
 
-export const { move, rotate, showMessage, hideMessage, changeSize, setVisible } = catSlice.actions;
+export const { move, rotateBy, showMessage, hideMessage, changeSize, setVisible } = catSlice.actions;
 export default catSlice.reducer;
